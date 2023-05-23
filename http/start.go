@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"time"
 
-	"cztech.com/market-center/pkg/cors"
 	"github.com/gin-gonic/gin"
+	"github.com/mztlive/project-template/pkg/cors"
 	"github.com/spf13/cast"
 )
 

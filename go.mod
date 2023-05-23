@@ -1,4 +1,4 @@
-module cztech.com/market-center
+module github.com/mztlive/project-template
 
 go 1.19
 

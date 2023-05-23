@@ -3,10 +3,10 @@ package main
 import (
 	"flag"
 
-	"cztech.com/market-center/pkg/config"
-	"cztech.com/market-center/pkg/database"
-	"cztech.com/market-center/pkg/logger"
-	"cztech.com/market-center/pkg/snowflake"
+	"github.com/mztlive/project-template/pkg/config"
+	"github.com/mztlive/project-template/pkg/database"
+	"github.com/mztlive/project-template/pkg/logger"
+	"github.com/mztlive/project-template/pkg/snowflake"
 	"github.com/spf13/viper"
 	"go.uber.org/zap"
 )
