@@ -1,11 +1,18 @@
 package main
 
 import (
+	"context"
 	"flag"
+	"log"
+	"os"
+	"os/signal"
+	"syscall"
 
+	"cztech.com/market-center/http"
 	"cztech.com/market-center/pkg/config"
 	"cztech.com/market-center/pkg/database"
 	"cztech.com/market-center/pkg/logger"
+	"cztech.com/market-center/pkg/snowflake"
 	"github.com/spf13/viper"
 	"go.uber.org/zap"
 )
@@ -36,4 +43,13 @@ func main() {
 		viper.GetInt("database.max_open_conns"),
 		viper.GetInt("database.max_idle_conns"),
 	)
+
+	snowflake.Initialize(viper.GetInt64("snowflake.worker_id"))
+
+	go http.Start(viper.GetInt32("http.port"))
+
+	quit, stop := signal.NotifyContext(context.Background(), syscall.SIGHUP, syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT, os.Interrupt, os.Kill)
+	defer stop()
+	<-quit.Done()
+	log.Println("Shutdown Server ...")
 }

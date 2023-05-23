@@ -6,6 +6,7 @@ import (
 	"cztech.com/market-center/pkg/config"
 	"cztech.com/market-center/pkg/database"
 	"cztech.com/market-center/pkg/logger"
+	"cztech.com/market-center/pkg/snowflake"
 	"github.com/spf13/viper"
 	"go.uber.org/zap"
 )
@@ -36,4 +37,6 @@ func main() {
 		viper.GetInt("database.max_open_conns"),
 		viper.GetInt("database.max_idle_conns"),
 	)
+
+	snowflake.Initialize(viper.GetInt64("snowflake.worker_id"))
 }
