@@ -22,5 +22,10 @@ echo "正在替换包名..."
 find . -type f -exec sed -i "s|github.com/mztlive/project-template|${package_name}|g" {} \;
 echo "包名替换完成."
 
+
+# copy example.config.toml to local.toml
+echo "正在复制配置文件..."
+cp example.config.toml local.toml
+
 # Done
 echo "脚本执行完毕，项目已设置为用户指定的包名."
