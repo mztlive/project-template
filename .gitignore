@@ -8,3 +8,4 @@ migrate
 *.log
 
 local.toml
+bin
