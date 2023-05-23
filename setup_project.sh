@@ -6,7 +6,7 @@ read -p "请输入项目目录名: " project_dir
 
 # Clone the repository
 echo "正在克隆项目模板..."
-git clone git@github.com:mztlive/project-template.git "${project_dir}"
+git clone --depth 1 git@github.com:mztlive/project-template.git "${project_dir}"
 echo "克隆完成."
 
 # Change to the project directory
