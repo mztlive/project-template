@@ -26,6 +26,12 @@
 6. snowflake(唯一id生成)
 7. 一些常用的数据结构
 
+## 如何开始
+1. 复制本仓库中的setup_project.sh文件到你本地  
+2. chmod +x setup_project.sh
+3. ./setup_project.sh  
+4. 根据提示操作
+
 ## 记录一些常用的包
 golang版的loadsh (https://github.com/samber/lo)   
 很方便的集合操作库 (https://github.com/deckarep/golang-set)   
