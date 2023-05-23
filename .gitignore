@@ -1,0 +1,10 @@
+
+*.out
+:memory
+stdout
+coverage.html
+config.yml
+migrate
+*.log
+
+local.toml

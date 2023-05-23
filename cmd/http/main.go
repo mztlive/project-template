@@ -20,7 +20,7 @@ import (
 var (
 	logPath = flag.String("log", "./log", "the log path")
 
-	configPath = flag.String("c", "./configs/local.toml", "the config file")
+	configPath = flag.String("c", "./local.toml", "the config file")
 
 	zapcore *zap.Logger
 )
@@ -36,7 +36,7 @@ func main() {
 	// 初始化日志
 	zapcore = logger.Initialize(*logPath, viper.GetBool("app.debug"))
 
-	// 初始化数据库连接
+	// 初始化数据库信息
 	database.Initialize(
 		viper.GetString("database.dsn"),
 		viper.GetString("database.driver"),
