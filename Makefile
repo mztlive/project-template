@@ -11,7 +11,10 @@ CRONTAB_OUT_DIR := ./bin/$(OS)/crontab
 HTTP_APP := $(HTTP_OUT_DIR)/app
 CRONTAB_APP := $(CRONTAB_OUT_DIR)/app
 
-.PHONY: all build-http build-crontab copy-config clean
+# current directory
+CUR_DIR := $(shell pwd)
+
+.PHONY: all build-http build-crontab copy-config run-http run-crontab clean
 
 build: build-http build-crontab copy-config
 
@@ -29,6 +32,14 @@ copy-config:
 	@echo "Copying local.toml to output directories..."
 	@cp local.toml $(HTTP_OUT_DIR)
 	@cp local.toml $(CRONTAB_OUT_DIR)
+
+run-http:
+	@echo "Running http app..."
+	go run ./cmd/http/main.go -c $(CUR_DIR) -log ./log
+
+run-crontab:
+	@echo "Running http app..."
+	go run ./cmd/crontab/main.go -c $(CUR_DIR) -log ./log
 
 clean:
 	@echo "Cleaning up build files..."
