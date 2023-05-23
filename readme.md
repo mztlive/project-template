@@ -1,15 +1,7 @@
 # Project Template
 
-可以基于这个模板创建基本的项目结构，内置以下模块
-
-1. viper (配置)
-2. sqlx (数据库)
-3. zap (日志)
-4. jwt (鉴权)
-5. cors (跨域)
-6. snowflake(唯一id生成)
-7. 一些常用的数据结构
-
+这是一个简单的golang web项目的目录结构，内置了一些常用的模块和标准了结构.   
+如果你需要开启一个新的web项目，可以clone然后再修改
 
 ```sh
 工程根目录
@@ -23,7 +15,19 @@
 ├── go.mod
 ├── go.sum
 ├── readme.md
-.
-.
-.
 ```
+
+## Feature
+1. viper (配置)
+2. sqlx (数据库)
+3. zap (日志)
+4. jwt (鉴权)
+5. cors (跨域)
+6. snowflake(唯一id生成)
+7. 一些常用的数据结构
+
+## 记录一些常用的包
+golang版的loadsh (https://github.com/samber/lo)   
+很方便的集合操作库 (https://github.com/deckarep/golang-set)   
+微信接口封装 (https://github.com/silenceper/wechat)   
+
