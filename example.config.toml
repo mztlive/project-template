@@ -4,6 +4,9 @@ debug = true
 [http]
 port = 8849
 
+[rpc]
+port = 12001
+
 [database]
 dsn = "mysql://localhost:3306"
 driver = "mysql"
