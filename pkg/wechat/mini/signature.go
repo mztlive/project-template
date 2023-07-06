@@ -8,6 +8,7 @@ import (
 )
 
 func CheckSignature(signature, timestamp, nonce, token string) bool {
+
 	tempArr := []string{token, timestamp, nonce}
 	sort.Strings(tempArr)
 	tempStr := strconv.Quote(implode(tempArr))
