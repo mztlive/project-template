@@ -14,7 +14,7 @@
                 "-c",
                 "${workspaceFolder}",
                 "-log",
-                "${workspaceFolder}/log"
+                "${workspaceFolder}/log/http.log"
             ]
         },
         {
@@ -27,7 +27,33 @@
                 "-c",
                 "${workspaceFolder}",
                 "-log",
-                "${workspaceFolder}/log"
+                "${workspaceFolder}/log/crontab.log"
+            ]
+        },
+        {
+            "name": "Rpc",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/rpc",
+            "args": [
+                "-c",
+                "${workspaceFolder}",
+                "-log",
+                "${workspaceFolder}/log/rpc.log"
+            ]
+        },
+        {
+            "name": "Back",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/back",
+            "args": [
+                "-c",
+                "${workspaceFolder}",
+                "-log",
+                "${workspaceFolder}/log/back.log"
             ]
         }
     ]

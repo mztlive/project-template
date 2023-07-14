@@ -4,7 +4,7 @@ package bcrypt_test
 import (
 	"testing"
 
-	"cztecht.com/market/pkg/bcrypt"
+	"github.com/mztlive/project-template/pkg/bcrypt"
 )
 
 func TestHashAndCheckHash(t *testing.T) {

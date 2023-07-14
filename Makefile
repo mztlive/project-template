@@ -51,11 +51,19 @@ copy-config:
 
 run-http:
 	@echo "Running http app..."
-	go run ./cmd/http/main.go -c $(CUR_DIR) -log ./log
+	go run ./cmd/http/main.go -c $(CUR_DIR) -log ./log/http.log
 
 run-crontab:
 	@echo "Running http app..."
-	go run ./cmd/crontab/main.go -c $(CUR_DIR) -log ./log
+	go run ./cmd/crontab/main.go -c $(CUR_DIR) -log ./log/crontab.log
+
+run-rpc:
+	@echo "Running rpc app..."
+	go run ./cmd/rpc/main.go -c $(CUR_DIR) -log ./log/rpc.log
+
+run-back:
+	@echo "Running rpc app..."
+	go run ./cmd/back/main.go -c $(CUR_DIR) -log ./log/back.log
 
 clean:
 	@echo "Cleaning up build files..."
