@@ -1,12 +1,14 @@
 package database
 
 import (
+	"log"
 	"sync"
+	"time"
 
 	"github.com/jmoiron/sqlx"
 
 	// 单元测试sqlx使用的是sqlite驱动
-	_ "github.com/mattn/go-sqlite3"
+	// _ "github.com/mattn/go-sqlite3"
 
 	// 程序要使用mysql驱动
 	_ "github.com/go-sql-driver/mysql"
@@ -15,7 +17,7 @@ import (
 var (
 	db     *sqlx.DB
 	config DBConfig
-	once   sync.Once
+	once   sync.Mutex
 )
 
 type DBConfig struct {
@@ -36,16 +38,17 @@ func Initialize(dsn, driver string, maxOpenConns, maxIdleConns int) {
 }
 
 func connect() {
-	once.Do(func() {
-		var err error
+	once.Lock()
+	defer once.Unlock()
 
-		if db, err = sqlx.Open(config.driver, config.dsn); err != nil {
-			panic(err)
-		}
+	var err error
 
-		db.SetMaxIdleConns(config.maxIdleConns)
-		db.SetMaxOpenConns(config.maxOpenConns)
-	})
+	if db, err = sqlx.Open(config.driver, config.dsn); err != nil {
+		panic(err)
+	}
+
+	db.SetMaxIdleConns(config.maxIdleConns)
+	db.SetMaxOpenConns(config.maxOpenConns)
 }
 
 // GetDB 获得SQLX的DB实例
@@ -57,7 +60,19 @@ func GetDB() *sqlx.DB {
 
 	err := db.Ping()
 	if err != nil {
-		panic("Database Connection Failed.")
+		log.Printf("Database Connection Failed. reason: %s\n", err.Error())
+
+		maxRetry := 3
+		for i := 0; i < maxRetry; i++ {
+			log.Println("Retry connect database...")
+			connect()
+			err = db.Ping()
+			if err == nil {
+				break
+			}
+
+			time.Sleep(300 * time.Millisecond)
+		}
 	}
 
 	return db

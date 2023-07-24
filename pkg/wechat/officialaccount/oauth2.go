@@ -24,5 +24,5 @@ type IOfficialAccountOauth interface {
 	GetRedirectURL(redirectURI, scope, state string) (string, error)
 
 	// GetUserAccessToken 获取用户授权access_token
-	GetUserAccessToken(code string) (result WebOauthAccessToken, err error)
+	GetUserAccessToken(code string) (result *WebOauthAccessToken, err error)
 }
