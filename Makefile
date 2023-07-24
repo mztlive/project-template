@@ -3,6 +3,9 @@
 # Get the current OS
 OS := $(shell uname -s | tr '[:upper:]' '[:lower:]')
 
+# Set the service name
+SERVICE_NAME ?= default_service_name
+
 # Set the output directories
 HTTP_OUT_DIR := ./bin/$(OS)/http
 CRONTAB_OUT_DIR := ./bin/$(OS)/crontab
@@ -10,17 +13,17 @@ RPC_OUT_DIR := ./bin/$(OS)/rpc
 BACK_OUT_DIR := ./bin/$(OS)/back
 
 # Set the output file paths
-HTTP_APP := $(HTTP_OUT_DIR)/app
-CRONTAB_APP := $(CRONTAB_OUT_DIR)/app
-RPC_APP := $(RPC_OUT_DIR)/app
-BACK_APP := $(BACK_OUT_DIR)/app
+HTTP_APP := $(HTTP_OUT_DIR)/$(SERVICE_NAME)-http
+CRONTAB_APP := $(CRONTAB_OUT_DIR)/$(SERVICE_NAME)-crontab
+RPC_APP := $(RPC_OUT_DIR)/$(SERVICE_NAME)-rpc
+BACK_APP := $(BACK_OUT_DIR)/$(SERVICE_NAME)-back
 
 # current directory
 CUR_DIR := $(shell pwd)
 
 .PHONY: all build-http build-crontab copy-config run-http run-crontab clean
 
-build: build-http build-crontab build-rpc build-back copy-config
+build: build-http build-crontab build-rpc build-back
 
 build-http:
 	@echo "Building http app for $(OS)..."
