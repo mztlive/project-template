@@ -8,10 +8,15 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/mztlive/project-template/pkg/cors"
 	"github.com/spf13/cast"
+	"github.com/spf13/viper"
 )
 
 func Start(port int32) {
 	engine := gin.Default()
+	if !viper.GetBool("app.debug") {
+		gin.SetMode(gin.ReleaseMode)
+	}
+
 	engine.Use(cors.GinCorsHandler())
 	installRouter(engine)
 
@@ -21,7 +26,7 @@ func Start(port int32) {
 
 func run(engin *gin.Engine, port int32) {
 	srv := &http.Server{
-		Addr:         "127.0.0.1:" + cast.ToString(port),
+		Addr:         "0.0.0.0:" + cast.ToString(port),
 		Handler:      engin,
 		ReadTimeout:  30 * time.Second,
 		WriteTimeout: 30 * time.Second,

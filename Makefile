@@ -3,8 +3,6 @@
 # Get the current OS
 OS := $(shell uname -s | tr '[:upper:]' '[:lower:]')
 
-# Set the service name
-SERVICE_NAME ?= default_service_name
 
 # Set the output directories
 HTTP_OUT_DIR := ./bin/$(OS)/http
@@ -13,10 +11,10 @@ RPC_OUT_DIR := ./bin/$(OS)/rpc
 BACK_OUT_DIR := ./bin/$(OS)/back
 
 # Set the output file paths
-HTTP_APP := $(HTTP_OUT_DIR)/$(SERVICE_NAME)-http
-CRONTAB_APP := $(CRONTAB_OUT_DIR)/$(SERVICE_NAME)-crontab
-RPC_APP := $(RPC_OUT_DIR)/$(SERVICE_NAME)-rpc
-BACK_APP := $(BACK_OUT_DIR)/$(SERVICE_NAME)-back
+HTTP_APP := $(HTTP_OUT_DIR)/http
+CRONTAB_APP := $(CRONTAB_OUT_DIR)/crontab
+RPC_APP := $(RPC_OUT_DIR)/rpc
+BACK_APP := $(BACK_OUT_DIR)/back
 
 # current directory
 CUR_DIR := $(shell pwd)

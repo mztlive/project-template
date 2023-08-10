@@ -1,19 +1,18 @@
-#!/usr/bin/bash
+#!/bin/sh
 
-# 项目名称
-SERVICE_NAME=$1
+ps -ef | grep http | awk '{print $1}' | xargs kill -9
+ps -ef | grep rpc | awk '{print $1}' | xargs kill -9
+ps -ef | grep back | awk '{print $1}' | xargs kill -9
+ps -ef | grep crontab | awk '{print $1}' | xargs kill -9
 
-ps -ef | grep ${SERVICE_NAME}-http | awk '{print $2}' | xargs kill -9
-ps -ef | grep ${SERVICE_NAME}-rpc | awk '{print $2}' | xargs kill -9
-ps -ef | grep ${SERVICE_NAME}-back | awk '{print $2}' | xargs kill -9
-ps -ef | grep ${SERVICE_NAME}-crontab | awk '{print $2}' | xargs kill -9
+chmod +x /deploy/rpc/rpc
+chmod +x /deploy/http/http
+chmod +x /deploy/back/back
+chmod +x /deploy/crontab/crontab
 
-chmod +x /home/${SERVICE_NAME}/linux/rpc/${SERVICE_NAME}-rpc
-chmod +x /home/${SERVICE_NAME}/linux/http/${SERVICE_NAME}-http
-chmod +x /home/${SERVICE_NAME}/linux/back/${SERVICE_NAME}-back
-chmod +x /home/${SERVICE_NAME}/linux/crontab/${SERVICE_NAME}-crontab
+/deploy/rpc/rpc -c /deploy -log /deploy/log/rpc.log &
+/deploy/http/http -c /deploy -log /deploy/log/http.log &
+/deploy/back/back -c /deploy -log /deploy/log/back.log &
+/deploy/crontab/crontab -c /deploy -log /deploy/log/crontab.log &
 
-/home/${SERVICE_NAME}/linux/rpc/${SERVICE_NAME}-rpc -c /etc/${SERVICE_NAME} -log /var/log/${SERVICE_NAME}/rpc.log >/var/log/${SERVICE_NAME}-rpc.log 2>&1 &
-/home/${SERVICE_NAME}/linux/http/${SERVICE_NAME}-http -c /etc/${SERVICE_NAME} -log /var/log/${SERVICE_NAME}/http.log >/var/log/${SERVICE_NAME}-http.log 2>&1 &
-/home/${SERVICE_NAME}/linux/back/${SERVICE_NAME}-back -c /etc/${SERVICE_NAME} -log /var/log/${SERVICE_NAME}/back.log >/var/log/${SERVICE_NAME}-back.log 2>&1 &
-/home/${SERVICE_NAME}/linux/crontab/${SERVICE_NAME}-crontab -c /etc/${SERVICE_NAME} -log /var/log/${SERVICE_NAME}/crontab.log >/var/log/${SERVICE_NAME}-crontab.log 2>&1 &
+tail -f /dev/null

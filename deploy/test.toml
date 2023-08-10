@@ -1,0 +1,17 @@
+[app]
+debug = true
+
+[http]
+port = 8849
+
+[rpc]
+port = 12001
+
+[database]
+dsn = "mysql://localhost:3306"
+driver = "mysql"
+max_open_conns = 100
+max_idle_conns = 100
+
+[snowflake]
+worker_id = 1

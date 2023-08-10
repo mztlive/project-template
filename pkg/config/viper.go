@@ -2,14 +2,31 @@ package config
 
 import (
 	"log"
+	"os"
 
 	"github.com/spf13/viper"
 )
 
 // 初始化配置的路径
-// 默认配置文件名为local.toml
 func Initialize(configPath string) {
-	viper.SetConfigName("local")
+
+	// 根据环境变量设置配置文件名字
+	// 例如：export ENV=dev
+	// 配置文件名字为：dev.toml
+
+	// 读取环境变量
+	env := os.Getenv("APP_ENV")
+	switch env {
+	case "dev":
+		viper.SetConfigName("dev")
+	case "test":
+		viper.SetConfigName("test")
+	case "prod":
+		viper.SetConfigName("prod")
+	default:
+		viper.SetConfigName("local")
+	}
+
 	viper.SetConfigType("toml")
 	viper.AddConfigPath(configPath)
 

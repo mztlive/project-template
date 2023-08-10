@@ -49,6 +49,7 @@ func connect() {
 
 	db.SetMaxIdleConns(config.maxIdleConns)
 	db.SetMaxOpenConns(config.maxOpenConns)
+	db = db.Unsafe()
 }
 
 // GetDB 获得SQLX的DB实例

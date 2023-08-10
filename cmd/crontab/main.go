@@ -1,7 +1,12 @@
 package main
 
 import (
+	"context"
 	"flag"
+	"log"
+	"os"
+	"os/signal"
+	"syscall"
 
 	"github.com/mztlive/project-template/pkg/config"
 	"github.com/mztlive/project-template/pkg/database"
@@ -39,4 +44,9 @@ func main() {
 	)
 
 	snowflake.Initialize(viper.GetInt64("snowflake.worker_id"))
+
+	quit, stop := signal.NotifyContext(context.Background(), syscall.SIGHUP, syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT, os.Interrupt, os.Kill)
+	defer stop()
+	<-quit.Done()
+	log.Println("Shutdown Crontab Server ...")
 }

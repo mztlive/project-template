@@ -48,5 +48,5 @@ func main() {
 	quit, stop := signal.NotifyContext(context.Background(), syscall.SIGHUP, syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT, os.Interrupt, os.Kill)
 	defer stop()
 	<-quit.Done()
-	log.Println("Shutdown Server ...")
+	log.Println("Shutdown Back Server ...")
 }
