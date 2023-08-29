@@ -36,7 +36,7 @@ func ConvertEntityToInsertNamedStmt(i interface{}) (string, error) {
 		case "id", "deleted_at", "updated_at", "created_at":
 			continue
 		}
-		columns = append(columns, dbTag)
+		columns = append(columns, "`"+dbTag+"`")
 		placeholders = append(placeholders, ":"+dbTag)
 	}
 
