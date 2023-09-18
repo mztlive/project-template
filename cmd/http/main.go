@@ -8,11 +8,11 @@ import (
 	"os/signal"
 	"syscall"
 
+	"github.com/mztlive/go-pkgs/config"
+	"github.com/mztlive/go-pkgs/database"
+	"github.com/mztlive/go-pkgs/logger"
+	"github.com/mztlive/go-pkgs/snowflake"
 	"github.com/mztlive/project-template/http"
-	"github.com/mztlive/project-template/pkg/config"
-	"github.com/mztlive/project-template/pkg/database"
-	"github.com/mztlive/project-template/pkg/logger"
-	"github.com/mztlive/project-template/pkg/snowflake"
 	"github.com/spf13/viper"
 	"go.uber.org/zap"
 )

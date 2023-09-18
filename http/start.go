@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/mztlive/project-template/pkg/cors"
+	"github.com/mztlive/go-pkgs/cors"
 	"github.com/spf13/cast"
 	"github.com/spf13/viper"
 )
