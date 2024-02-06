@@ -5,6 +5,7 @@ go 1.19
 require (
 	github.com/gin-gonic/gin v1.9.1
 	github.com/mztlive/go-pkgs v0.0.10
+	github.com/robfig/cron/v3 v3.0.1
 	github.com/spf13/cast v1.5.1
 	github.com/spf13/viper v1.16.0
 	go.uber.org/zap v1.25.0
